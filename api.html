@@ -145,8 +145,7 @@ btapp.on('add:torrent', function(torrents) {
           <h3>Adding a torrent</h3>
           <pre class="prettyprint linenums">
 var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
-btapp.get('add').torrent(url);
-          </pre>
+btapp.get('add').torrent(url);</pre>
           <p><strong>Callback?</strong> If you'd like to know when the torrent has been added, you can do so by passing in an object with <i>url</i> and <i>callback</i> keys.<p>
           <pre class="prettyprint linenums">
 var magnet = 'magnet:?xt=urn:btih:f0d665f264393a7dafd7d05d739e1097df652e80&dn=The.Yes.Men.Fix.The.World';
