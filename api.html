@@ -99,9 +99,10 @@
         <section id="warning">
           <div class="page-header">
             <h1>Asynchronous Warning:</h1>
-            <p>Every bit of state, or function, is available <strong>only</strong> once it has been bubbled up from the underlying Torque torrent client. Which is to say you can't blindly do the following:
-              <h5>DON'T<h5>
-              <pre class="prettyprint linenums">
+          </div>
+          <p>Every bit of state, or function, is available <strong>only</strong> once it has been bubbled up from the underlying Torque torrent client. Which is to say you can't blindly do the following:
+            <h5>DON'T</h5>
+            <pre class="prettyprint linenums">
 var btapp = new Btapp();
 btapp.connect();
 
@@ -110,7 +111,6 @@ btapp.connect();
 btapp.get('torrent').each(function(torrent) {
   torrent.remove();
 });</pre>
-          </div>
           <p>
             The code would work fine in most contexts, but the <i>torrent</i> attribute (the list of torrents, not a specific torrent) doesn't exist until you've connected to the torrent client and it has exposed its list of torrents to your btapp object.
           </p>
@@ -141,11 +141,27 @@ btapp.on('add:torrent', function(torrents) {
         <section id="torrents">
           <div class="page-header">
             <h1>Torrents</h1>
-            <h4>Adding a torrent</h4>
-
           </div>
-          <p></p>
-        </section>
+          <h3>Adding a torrent</h3>
+          <pre class="prettyprint linenums">
+var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
+btapp.get('add').torrent(url);
+          </pre>
+          <p><strong>Callback?</strong> If you'd like to know when the torrent has been added, you can do so by passing in an object with <i>url</i> and <i>callback</i> keys.<p>
+          <pre class="prettyprint linenums">
+var magnet = 'magnet:?xt=urn:btih:f0d665f264393a7dafd7d05d739e1097df652e80&dn=The.Yes.Men.Fix.The.World';
+
+// Can also provide a few more details if we want to get fancy
+var callback = function(err) {
+  alert('added the torrent');
+};
+btapp.get('add').torrent({
+  url: magnet,
+  callback: callback
+});</pre>
+          <p><strong>Download directory?</strong> You can pass in <i>location</i> to specify the download directory. This is used in combination with <i>btapp.browseforfolder</i> to let your users control download locations on a torrent by torrent basis.</p>
+          <p><strong>Label?</strong> You can pass in <i>label</i> to specify a label. This can also be set/added after the fact by accessing the torrents properties.</p>
+          </section>
       </div>
     </div>
 
