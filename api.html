@@ -54,15 +54,9 @@
               <li class="">
                 <a href="./visualizer.html">Visualizer</a>
               </li>
-              <!--li class="">
-                <a href="./components.html">Components</a>
-              </li>
               <li class="">
-                <a href="./javascript.html">Javascript</a>
+                <a href="./torrent-clients.html">Torrent Clients</a>
               </li>
-              <li class="">
-                <a href="./customize.html">Customize</a>
-              </li-->
             </ul>
           </div>
         </div>
@@ -141,7 +135,8 @@ btapp.on('add:torrent', function(torrents) {
         <section id="torrents">
           <div class="page-header">
             <h1>Torrents</h1>
-            <p>The list of torrents loaded in the Torque torrent client are represented in a <i>Backbone.Collection</i> that is accessible via <i>btapp.get('torrent')</i>
+            <p>The list of torrents loaded in the Torque torrent client are represented in a <i>Backbone.Collection</i> that is accessible via <i>btapp.get('torrent')</i></p>
+            <p>Adding torrents can be done by using the function <i>btapp.get('add').torrent</i></p>
           </div>
           <h3>Adding a torrent</h3>
           <pre class="prettyprint linenums">
@@ -151,8 +146,7 @@ btapp.get('add').torrent(url);</pre>
           <pre class="prettyprint linenums">
 var magnet = 'magnet:?xt=urn:btih:f0d665f264393a7dafd7d05d739e1097df652e80&dn=The.Yes.Men.Fix.The.World';
 
-// Can also provide a few more details if we want to get fancy
-var callback = function(err) {
+var callback = function() {
   alert('added the torrent');
 };
 btapp.get('add').torrent({
@@ -161,6 +155,14 @@ btapp.get('add').torrent({
 });</pre>
           <p><strong>Download directory?</strong> You can pass in <i>location</i> to specify the download directory. This is used in combination with <i>btapp.browseforfolder</i> to let your users control download locations on a torrent by torrent basis.</p>
           <p><strong>Label?</strong> You can pass in <i>label</i> to specify a label. This can also be set/added after the fact by accessing the torrent's properties.</p>
+          <p><strong>Priority? (PENDING)</strong> You can pass in <i>priority</i> to specify a the torrents starting priority. Valid priority values are available in <i>Btapp.TORRENT.PRIORITY.</i></p>
+          <p>To add a torrent and stop after the torrent file has been added (or the magnet link has resolved to a torrent file), try the following:</p>
+          <pre class="prettyprint linenums">
+var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
+btapp.get('add').torrent({
+  url: url,
+  priority: Btapp.TORRENT.PRIORITY.METADATA_ONLY
+});</pre>
           <br>
           <h3>Removing torrents</h3>
           <p>These torrents all suck. Lets get rid of them all.</p>
@@ -199,6 +201,7 @@ btapp.live('torrent * properties download_url', function(download_url, propertie
   }
 });
 </pre>
+This code can be generalized to track any of the torrent properties. Use the <a href="./visualizer.html">Api Visualizer</a> to explore the torrent properties available.
           </section>
       </div>
     </div>

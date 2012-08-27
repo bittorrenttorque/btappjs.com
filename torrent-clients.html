@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Api</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Bootstrap</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="./index.html">Home</a>
+              </li>
+              <li class="">
+                <a href="./getting-started.html">Get started</a>
+              </li>
+              <li class="active">
+                <a href="./api.html">Api</a>
+              </li>
+              <li class="">
+                <a href="./visualizer.html">Visualizer</a>
+              </li>
+              <li class="">
+                <a href=".torrent-clients.html">Torrent Clients</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Torrent Clients</h1>
+    <p class="lead">Torque vs &microTorrent vs BitTorrent</p>
+  </div>
+</header>
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#compatibility"><i class="icon-chevron-right"></i> Compatibility</a></li>
+          <li><a href="#plugin"><i class="icon-chevron-right"></i> Browser Plugin</a></li>
+          <li><a href="#pairing"><i class="icon-chevron-right"></i> Pairing</a></li>
+          <li><a href="#torque"><i class="icon-chevron-right"></i> Torque</a></li>
+          <li><a href="#utorrent"><i class="icon-chevron-right"></i> &microTorrent</a></li>
+          <li><a href="#bittorrent"><i class="icon-chevron-right"></i> BitTorrent</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+        <section id="compatibility">
+          <div class="page-header">
+            <h1>Api Compatibility</h1>
+            <p>By default, the api will try to use Torque, a headless torrent client. This means the <i>connect</i> call will facilitate the installation of a browser plugin, and the underlying torrent client if it isn't already available. This is similar to the way that browsers will handle the installation of Flash if it isn't available, freeing the Flash developer to assume that the functionality is available.</p>
+
+            Most web apps that use <i>btapp.js</i> will probably want to use the headless Torque client. However, the api is also already available in the alpha branches of <strong>BitTorrent</strong> and <a href="http://download.utorrent.com/latest/uTorrent-alpha.exe"><strong>uTorrent</strong> (version 3.3 and later)</a>, which is available via <a href="http://forum.utorrent.com/viewtopic.php?id=118544">the uTorrent forums.</a>
+          </div>
+        </section>
+
+        <section id="plugin">
+          <div class="page-header">
+            <h1>Browser Plugin</h1>
+          </div>
+          <p>
+            When calling <i>connect</i> for the first time, the user will be prompted to install the browser plugin. The browser plugin is responsible for making sure that the underlying torrent client is running when needed. This is usually desired when using the <i>Torque</i> client, however it may not be necessary if you're connecting to say, <i>&micro</i>Torrent.
+          </p>
+          <p>
+            If you don't wish to require the plugin, specify <pre class="prettyprint linenums">plugin: false</pre>
+            As the plugin also handles pairing via an embedded iframe element, it will be necessary to specify the native pairing type as below:
+            <pre class="prettyprint linenums">pairing_type: 'native'</pre>
+          </p>
+        </section>
+
+        <section id="pairing">
+          <div class="page-header">
+            <h1>Pairing</h1>
+          </div>
+          <p>Pairing is a security measure to make sure that websites you visit must be granted user approval before accessing the contents of your torrent client. This is handled by the <i>connect</i> call, and only needs to be specified if you don't want to use the browser plugin.</p>
+
+          <p>If you've specified <i>plugin: false</i>, use the following</p>
+          <pre class="prettyprint linenums">pairing_type: 'native'</pre>
+          <p>For reference, the default is the same as specifying the following:</p>
+          <pre class="prettyprint linenums">pairing_type: 'iframe'</pre>
+
+
+        </section>
+
+        <section id="torque">
+          <div class="page-header">
+            <h1>Torque</h1>
+          </div>
+          The default product that the library connects to is <i>Torque</i>, so there is no need to specify anything.
+          <pre class="prettyprint linenums">
+var btapp = new Btapp;
+btapp.connect();</pre>
+          <p>this is identical to providing the default <i>product</i> and <i>plugin</i> options</p>
+          <pre class="prettyprint linenums">
+var btapp = new Btapp;
+btapp.connect({
+  product: 'Torque',
+  plugin: true
+});</pre>
+        </section>
+
+        <section id="utorrent">
+          <div class="page-header">
+            <h1>uTorrent</h1>
+          </div>
+          When using <i>btapp.js</i> to connect to a uTorrent client running on your user's machine, you may not want to 
+          <pre class="prettyprint linenums">
+var btapp = new Btapp;
+btapp.connect({
+  product: 'uTorrent',
+  plugin: false,
+  pairing_type: 'native'
+});</pre>
+        </section>
+
+        <section id="bittorrent">
+          <div class="page-header">
+            <h1>BitTorrent</h1>
+          </div>
+          <pre class="prettyprint linenums">
+var btapp = new Btapp;
+btapp.connect({
+  product: 'BitTorrent',
+  plugin: false,
+  pairing_type: 'native'
+});</pre>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>Btapp.js is developed and maintained <a href="http://twitter.com/bittorrent" target="_blank">@bittorrent</a> by <a href="http://twitter.com/pwmckenna" target="_blank">@pwmckenna</a> and <a href="https://twitter.com/Kzahel" target="_blank">@kzahel</a>.</p>
+        <p>Code licensed under the <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p>Documentation is (somewhat obviously) derived from the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> documentation.
+        <ul class="footer-links">
+          <li><a href="http://pwmckenna.github.com">Read the blog</a></li>
+          <li><a href="https://github.com/bittorrenttorque/btapp/issues?state=open">Submit issues</a></li>
+          <li><a href="https://github.com/bittorrenttorque/btapp/wiki">Roadmap and changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+    <script src="assets/js/application.js"></script>
+
+
+
+  </body>
+</html>
