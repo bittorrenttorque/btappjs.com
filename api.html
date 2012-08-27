@@ -136,11 +136,12 @@ btapp.on('add:torrent', function(torrents) {
             <br><br>
             The complexity of protecting against these timing issues grows exponentially as you access children of children attributes, so make sure to take advantage of <a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a> (included by default in the template project). 
           </p>
-          <h5>The following api examples will be kept as simple as possible, so will not necessarly avoid these timing issues.</h5>
+          <h5>The following api examples will be kept as simple as possible, so will not necessarly avoid these timing issues. Examples that are written carefully to avoid these issues will be denoted with a <strong>SUPER TIMING SAFE!</strong></h5>
         </section>
         <section id="torrents">
           <div class="page-header">
             <h1>Torrents</h1>
+            <p>The list of torrents loaded in the Torque torrent client are represented in a <i>Backbone.Collection</i> that is accessible via <i>btapp.get('torrent')</i>
           </div>
           <h3>Adding a torrent</h3>
           <pre class="prettyprint linenums">
@@ -159,7 +160,43 @@ btapp.get('add').torrent({
   callback: callback
 });</pre>
           <p><strong>Download directory?</strong> You can pass in <i>location</i> to specify the download directory. This is used in combination with <i>btapp.browseforfolder</i> to let your users control download locations on a torrent by torrent basis.</p>
-          <p><strong>Label?</strong> You can pass in <i>label</i> to specify a label. This can also be set/added after the fact by accessing the torrents properties.</p>
+          <p><strong>Label?</strong> You can pass in <i>label</i> to specify a label. This can also be set/added after the fact by accessing the torrent's properties.</p>
+          <br>
+          <h3>Removing torrents</h3>
+          <p>These torrents all suck. Lets get rid of them all.</p>
+          <pre class="prettyprint linenums">
+btapp.get('torrent').each(function(torrent) {
+  torrent.remove();
+});
+</pre>
+          <br>
+          <h3>Torrent download percentage</h3>
+          <p>You may be interested in displaying the download percentage of a torrent that you add. This is simple, provided we are using <a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a>. Lets add a torrent file from a url, then be very verbose about how much has downloaded.
+            <h5>SUPER TIMING SAFE!</h5>
+          <pre class="prettyprint linenums">
+var btapp = new Btapp;
+btapp.connect();
+
+var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
+btapp.live('add', function(add) {
+  add.torrent(url);
+});
+
+// Backbrace passes the matching values in reverse order to the callback
+// In this case we'll be called for each download_url in the properties of any torrent in the torrent list
+btapp.live('torrent * properties download_url', function(download_url, properties, torrent, torrents) {
+  // We are only interested in the torrent that has a download_url that matches the location we provided
+  if(download_url == url) {
+    var name = properties.get('name');
+    // We found our torrent!
+    // Now lets listen for progress changes
+    properties.on('change:progress', function(progress) {
+      // We have an update!
+      alert('Download progress for ' + name + ': ' + progress);
+    });
+  }
+});
+</pre>
           </section>
       </div>
     </div>
