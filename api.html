@@ -178,6 +178,8 @@ var btapp = new Btapp;
 btapp.connect();
 
 var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
+
+// Wait for the add functionality to bubble up from the torrent client, then use it to add the torrent
 btapp.live('add', function(add) {
   add.torrent(url);
 });
