@@ -86,6 +86,7 @@
     <div class="row">
       <div class="span3 bs-docs-sidebar">
         <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#warning"><i class="icon-chevron-right"></i> Asynchronous Warning</a></li>
           <li><a href="#torrents"><i class="icon-chevron-right"></i> Torrents</a></li>
         </ul>
       </div>
@@ -95,11 +96,55 @@
 
         <!-- Global Bootstrap settings
         ================================================== -->
+        <section id="warning">
+          <div class="page-header">
+            <h1>Asynchronous Warning:</h1>
+            <p>Every bit of state, or function, is available <strong>only</strong> once it has been bubbled up from the underlying Torque torrent client. Which is to say you can't blindly do the following:
+              <h5>DON'T<h5>
+              <pre class="prettyprint linenums">
+var btapp = new Btapp();
+btapp.connect();
+
+// The torrent list is bubbled up after the connect call.
+// This code expects it to exist immediately and will fail.
+btapp.get('torrent').each(function(torrent) {
+  torrent.remove();
+});</pre>
+          </div>
+          <p>
+            The code would work fine in most contexts, but the <i>torrent</i> attribute (the list of torrents, not a specific torrent) doesn't exist until you've connected to the torrent client and it has exposed its list of torrents to your btapp object.
+          </p>
+          <br>
+          <p>
+            Instead, we rely on Backbone's event handling to do this this safely (and get the expected behavior)
+          </p>
+              <h5>DO</h5>
+              <pre class="prettyprint linenums">
+var btapp = new Btapp();
+btapp.connect();
+
+// This code will wait for the traditional backbone <i>add</i> event to be thrown. 
+// We can listen to a specific attribute (in this case <i>torrent</i>) by adding <i>:attribute</i>
+btapp.on('add:torrent', function(torrents) {
+  torrents.each(function(torrent) {
+    torrent.remove();
+  });
+});
+</pre>
+          <p>
+            Depending on you app, you may not care about ensuring the functionality is available, but it is important to avoid referencing attributes/functions of undefined values.
+            <br><br>
+            The complexity of protecting against these timing issues grows exponentially as you access children of children attributes, so make sure to take advantage of <a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a> (included by default in the template project). 
+          </p>
+          <h5>The following api examples will be kept as simple as possible, so will not necessarly avoid these timing issues.</h5>
+        </section>
         <section id="torrents">
           <div class="page-header">
             <h1>Torrents</h1>
+            <h4>Adding a torrent</h4>
+
           </div>
-          <p>
+          <p></p>
         </section>
       </div>
     </div>
