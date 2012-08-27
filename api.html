@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Getting Started</title>
+    <title>Api</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -45,10 +45,10 @@
               <li class="">
                 <a href="./index.html">Home</a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="./getting-started.html">Get started</a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="./api.html">Api</a>
               </li>
               <li class="">
@@ -73,11 +73,10 @@
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-    <h1>Getting started</h1>
-    <p class="lead">Overview of the project, it's contents, and how to get started with a simple template.</p>
+    <h1>Api</h1>
+    <p class="lead">The reference for what the underlying torrent client can do for you.</p>
   </div>
 </header>
-
 
   <div class="container">
 
@@ -86,80 +85,20 @@
     <div class="row">
       <div class="span3 bs-docs-sidebar">
         <ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="#template-project"><i class="icon-chevron-right"></i> Template Project</a></li>
-          <li><a href="#dependencies"><i class="icon-chevron-right"></i> Dependencies</a></li>
-          <li><a href="#source"><i class="icon-chevron-right"></i> Source</a></li>
-          <li><a href="#javascript-interface"><i class="icon-chevron-right"></i> Javascript interface</a></li>
+          <li><a href="#torrents"><i class="icon-chevron-right"></i> Torrents</a></li>
         </ul>
       </div>
       <div class="span9">
 
 
 
-        <!-- Template
+        <!-- Global Bootstrap settings
         ================================================== -->
-        <section id="template-project">
+        <section id="torrents">
           <div class="page-header">
-            <h1>Template Project</h1>
-          </div>
-          <p class="lead"><strong>Recommended!</strong> We created <a href="https://github.com/bittorrenttorque/template">a template project</a> that uses the btapp.js files and links to all the dependencies, so you don't have to deal with the rest of this page.</p>
-<pre class="prettyprint linenums">git clone git://github.com/bittorrenttorque/template.git</pre>
-          </p>
-          Then navigate to index.html and you'll see the events displayed on the screen (you will be asked to install the plugin if this is your first time working with Torque)
-        </section>
-
-        <!-- Dependencies
-        ================================================== -->
-        <section id="dependencies">
-          <div class="page-header">
-            <h1>Dependencies</h1>
-          </div>
-          <p class="lead">Btapp.js has hard dependencies on <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>, <a href="https://github.com/documentcloud/backbone" target="_blank">Backbone</a>, <a href="https://github.com/douglascrockford/JSON-js" target="_blank">Json2</a> and <a href="https://github.com/andris9/jStorage" target="_blank">jStorage</a></p>
-
-          <pre class="prettyprint linenums">
-&lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;http://underscorejs.org/underscore-min.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;http://backbonejs.org/backbone-min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://raw.github.com/andris9/jStorage/master/jstorage.js&quot;&gt;&lt;/script&gt;</pre>
-          <p class="lead"><a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a> is also heavily recommended, to alleviate some of the trouble you might have using deep trees of Backbone models and collections.</p>
-          <pre class="prettyprint linenums">
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/backbrace/master/backbrace.js&quot;&gt;&lt;/script&gt;</pre>
-        </section>
-        <!-- Source
-        ================================================== -->
-        <section id="source">
-          <div class="page-header">
-            <h1>Source</h1>
-          </div>
-
-          <div class="row-fluid">
-            <div class="span12">
-              <pre class="prettyprint linenums">
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/btapp.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/client.btapp.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/plugin.btapp.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/pairing.btapp.js&quot;&gt;&lt;/script&gt;</pre>
-              <strong>...or...</strong>
-              <br>
-              <br>
-              <p>Get the original files for btapp.js by downloading the latest version directly from GitHub.</p>
-              <p><a class="btn btn-large" href="https://github.com/bittorrenttorque/btapp/zipball/master" >Download Btapp.js source</a></p>
-            </div>
-          </div>
-        </section>
-
-        <section id="javascript-interface">
-          <div class="page-header">
-            <h1>Javascript Interface</h1>
+            <h1>Torrents</h1>
           </div>
           <p>
-            There is a single base class called <i>Btapp</i>. Create a new object, tell it to connect to the underlying Torque torrent client and you're off to the races. 
-            <pre class="prettypritn linenums">
-var btapp = new Btapp();
-btapp.connect();</pre>
-            Ready to do something with the torrent client? Take a look at <a href="./visualizer.html">the api visualizer</a> or <a href="./api.html">the api documentation.</a>
-          </p>
         </section>
       </div>
     </div>
@@ -184,6 +123,7 @@ btapp.connect();</pre>
         </ul>
       </div>
     </footer>
+
 
 
     <!-- Le javascript
