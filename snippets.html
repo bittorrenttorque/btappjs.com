@@ -82,18 +82,15 @@
           <li><a href="#warning"><i class="icon-chevron-right"></i> Asynchronous Warning</a></li>
           <li><a href="#torrents"><i class="icon-chevron-right"></i> Torrents</a></li>
           <li><a href="#adding-torrent"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Adding</a></li>
-          <li><a href="#removing-torrent"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Removing</a>
-          </li>
-          <li><a href="#torrent-properties"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Properties</a>
-          </li>
+          <li><a href="#removing-torrent"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Removing</a></li>
+          <li><a href="#torrent-properties"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Properties</a></li>
           <li><a href="#files"><i class="icon-chevron-right"></i> Torrent Files</a></li>
           <li><a href="#file-disk"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Files On Disk</a></li>
-          <li><a href="#file-streaming"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Streaming Files</a>
-          </li>
-          <li><a href="#file-itunes"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Pushing To iTunes</a>
-          <li><a href="#file-properties"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;File Properties</a>
-          </li>
-          </li>
+          <li><a href="#file-streaming"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Streaming Files</a></li>
+          <li><a href="#file-itunes"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Pushing To iTunes</a></li>
+          <li><a href="#file-properties"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;File Properties</a></li>
+          <li><a href="#trackers"><i class="icon-chevron-right"></i> Tracker</a></li>
+          <li><a href="#tracker-scrape"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Tracker Scrape</a></li>
         </ul>
       </div>
       <div class="span9">
@@ -225,18 +222,18 @@ This code can be generalized to track any of the torrent properties. Use the <a 
         <section id="files">
           <div class="page-header">
             <h1>Torrent Files</h1>
-            <p>Torrents are wrappers around a bundle of files. These files, once fully downloaded are like any other download. The file is in some folder on your computer, and can be interacted with as such. Oftentimes the content of torrents is skewed towards music and video, so there are a few media specific functions that might please your users.</p>
-            <br>
-            <p>To access the files in a specific torrent (we'll use the torrent from above), try the following:</p>
-            <pre class="prettyprint linenums">
-var files = btapp.get('torrent').get('D9C70109CB05C181F9EC9373BE876A0D40C4D7B0').get('file');</pre>
-            <p><strong>Note:</strong> We use the info hash (upper case) of the torrent as the id used to lookup the specific torrent in the torrent collection.</p>
-            <br>
-            <p>The id of the file Backbone models is the name of the file. For instance, if we <a href="http://backbonejs.org/#Collection-pluck" target="_blank">pluck</a> out the ids from our file collection:</p>
-            <pre class="prettyprint linenums">
- > files.pluck('id');
-   ["Deadside.2012.720p.x264-VODO.mkv", "Want.to.see.what.happens.next.url", "vodo.nfo"]</pre>
           </div>
+          <p>Torrents are wrappers around a bundle of files. These files, once fully downloaded are like any other download. The file is in some folder on your computer, and can be interacted with as such. Oftentimes the content of torrents is skewed towards music and video, so there are a few media specific functions that might please your users.</p>
+          <br>
+          <p>To access the files in a specific torrent (we'll use the torrent from above), try the following:</p>
+          <pre class="prettyprint linenums">
+var files = btapp.get('torrent').get('D9C70109CB05C181F9EC9373BE876A0D40C4D7B0').get('file');</pre>
+          <p><strong>Note:</strong> We use the info hash (upper case) of the torrent as the id used to lookup the specific torrent in the torrent collection.</p>
+          <br>
+          <p>The id of the file Backbone models is the name of the file. For instance, if we <a href="http://backbonejs.org/#Collection-pluck" target="_blank">pluck</a> out the ids from our file collection:</p>
+          <pre class="prettyprint linenums">
+> files.pluck('id');
+ ["Deadside.2012.720p.x264-VODO.mkv", "Want.to.see.what.happens.next.url", "vodo.nfo"]</pre>
           <section id="file-disk">
             <h3>Files on Disk</h3>
             <p>The function <i>open_containing</i> exists both on the torrent (to open the folder that contains the entire torrent and all the files), and on specific files. This offer a couple choices when revealing to your user where the file has been downloaded to, on their computer.</p>
@@ -250,18 +247,45 @@ torrent.open_containing();
 var first_file = btapp.get('torrent').get('D9C70109CB05C181F9EC9373BE876A0D40C4D7B0').get('file').at(0);
 first_file.open_containing();
             </pre>
-        </section>
+          </section>
           <section id="file-stream">
             <h3>Streaming Url</h3>
+            <p>Coming Soon!</p>
           </section>
           <section id="file-itunes">
             <h3>Transfer to iTunes</h3>
+            <p>Coming Soon!</p>
           </section>
           <section id="file-properties">
             <h3>File Properties</h3>
+            <p>Coming Soon!</p>
           </section>
         </section>
-
+        <section id="trackers">
+          <div class="page-header">
+            <h1>Trackers</h1>
+            <p>Trackers are used to augment the dht in finding peers for a specific torrent. However, they generally also support <a href="http://wiki.theory.org/BitTorrentSpecification#Tracker_.27scrape.27_Convention">scrape requests.</a> These can yield information on how many seeders, leachers, the total number of completed downloads, and optionally the name of the torrent.
+            </p>
+            <section id="tracker-scrape">
+              <h3>Scrape Requests</h3>
+              <p>Scrape requests can be quite useful for finding out information about a torrent without adding it to the torrent client. To make a scrape request, try the following:
+              </p>
+              <pre class="prettyprint linenums">
+btapp.get('tracker').scrape({
+  //replace with any info hash
+  hash: '0D8A72B221176784856673D6C9E2FD193FCD5978' 
+  //replace with any other tracker announce url
+  tracker: 'http://tracker001.legaltorrents.com:7070/announce',
+  callback: function(info) {
+    if('error' in info) {
+      alert('Error:' + info.error);
+    } else {
+      alert('Success: ' + JSON.stringify(info));
+    }
+  }
+})
+              </pre>
+            </section>
 
       </div>
     </div>
