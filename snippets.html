@@ -277,14 +277,26 @@ btapp.get('tracker').scrape({
   //replace with any other tracker announce url
   tracker: 'http://tracker001.legaltorrents.com:7070/announce',
   callback: function(info) {
-    if('error' in info) {
-      alert('Error:' + info.error);
-    } else {
-      alert('Success: ' + JSON.stringify(info));
-    }
+    console.log(info);
   }
-})
-              </pre>
+});</pre>
+              <p>Console output:</p>
+              <pre class="prettyprint linenums">
+{
+  complete: 1023,
+  downloaded: 1233,
+  incomplete: 4,
+  name: 'NCB - WayTooSick' //the availability of the <i>name</i> field varies from tracker to tracker
+}</pre>
+
+              <p><strong>Alternative:</strong> Often times as a programmer, you might simply want the scrape data for a torrent hosted on the web. If you provide a url, rather than a tracker, hash pair, the underlying Torque client will do the heavy lifting of downloading the torrent file and using the embedded info hash and tracker fields to make the scrape request for you.</p>
+              <pre class="prettyprint linenums">
+btapp.get('tracker').scrape({
+  url: 'http://archive.org/download/jj2008-06-14.mk4/jj2008-06-14.mk4_archive.torrent',
+  callback: function(info) {
+    console.log(info);
+  }
+});</pre>
             </section>
 
       </div>
