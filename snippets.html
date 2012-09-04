@@ -292,7 +292,7 @@ btapp.live('torrent ' + hash, function(torrent) {
     
     if(ext !== 'mp3') {
       file.get('properties').save({
-        priority: 0
+        priority: 0 // Will be adding file priority constants shortly
       });
     }
   });
