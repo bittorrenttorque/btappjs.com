@@ -89,6 +89,8 @@
           <li><a href="#file-streaming"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Streaming Files</a></li>
           <li><a href="#file-itunes"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Pushing To iTunes</a></li>
           <li><a href="#file-properties"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;File Properties</a></li>
+          <li><a href="#selective-file-downloads"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Selective File Downloads</a></li>
+
           <li><a href="#trackers"><i class="icon-chevron-right"></i> Tracker</a></li>
           <li><a href="#tracker-scrape"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Tracker Scrape</a></li>
         </ul>
@@ -260,6 +262,47 @@ first_file.open_containing();
             <h3>File Properties</h3>
             <p>Coming Soon!</p>
           </section>
+          <section id="selective-file-downloads">
+            <h3>Selective File Downloads</h3>
+            <p>One of the downsides of working with torrents is that you may have found a torrent file via rss feed or a tracker's json api, but you want to only download the files that match a specific criteria. This is slightly more awkward than just downloading all the files (When you add a torrent every file is downloaded by default).</p>
+
+            <p>I'm going to show you how to download a torrent from internet archive that contains a mix of mp3/flac/ogg files. My app only wants to download the mp3 files.</p>
+            <pre class="prettyprint linenums">
+var url = 'http://archive.org/download/jj2008-06-14.mk4/jj2008-06-14.mk4_archive.torrent';
+var hash = '58E31260A1150AFD23D7505B66A574C73BAB483D';
+ 
+var btapp = new Btapp;
+btapp.connect();
+ 
+// Once the add functionality is available add the torrent.
+// Specify METADATA_ONLY to ensure we don't start downloading immediately
+btapp.live('add', function(add) {
+  add.torrent({
+    url: url,
+    priority: Btapp.TORRENT.PRIORITY.METADATA_ONLY
+  });
+});
+ 
+// Only listen for the specific torrent hash in the torrent list 
+btapp.live('torrent ' + hash, function(torrent) {
+  // Make sure that files that don't match our filter have a priority of 0
+  torrent.get('file').each(function(file) {
+    var name = file.get('properties').get('name');
+    var ext = name.substr(name.lastIndexOf('.') + 1);
+    
+    if(ext !== 'mp3') {
+      file.get('properties').save({
+        priority: 0
+      });
+    }
+  });
+  // Resume the normal download behavior
+  torrent.set_priority(Btapp.TORRENT.PRIORITY.MEDIUM);
+  torrent.start();
+});
+});</pre>
+
+          </section>
         </section>
         <section id="trackers">
           <div class="page-header">
@@ -298,7 +341,6 @@ btapp.get('tracker').scrape({
   }
 });</pre>
             </section>
-
           </div>
         </div>
       </div>
