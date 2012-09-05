@@ -198,15 +198,16 @@ btapp.connect();
 
 var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
 
-// Wait for the add functionality to bubble up from the torrent client, then use it to add the torrent
+// Wait for the add functionality to bubble up from the torrent client
+// Once available, use it to add the torrent
 btapp.live('add', function(add) {
   add.torrent(url);
 });
 
 // Backbrace passes the matching values in reverse order to the callback
 // In this case we'll be called for each download_url in the properties of any torrent in the torrent list
-btapp.live('torrent * properties download_url', function(download_url, properties, torrent, torrents) {
-  // We are only interested in the torrent that has a download_url that matches the location we provided
+btapp.live('torrent * properties download_url', function(download_url, properties) {
+  // Only interested in the torrent that has a download_url that matches the location we provided
   if(download_url == url) {
     var name = properties.get('name');
     // We found our torrent!
