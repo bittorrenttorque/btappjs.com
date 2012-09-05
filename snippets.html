@@ -93,7 +93,7 @@
 
           <li><a href="#trackers"><i class="icon-chevron-right"></i> Tracker</a></li>
           <li><a href="#tracker-scrape"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Tracker Scrape</a></li>
-          <li><a href="#comments"><i class="icon-chevron-right"></i>Comments</a></li>
+          <li><a href="#comments"><i class="icon-chevron-right"></i><strong>Comments</strong></a></li>
         </ul>
       </div>
       <div class="span9">
@@ -106,9 +106,9 @@
           <div class="page-header">
             <h1>Asynchronous Warning:</h1>
           </div>
-          <p>Every bit of state, or function, is available <strong>only</strong> once it has been bubbled up from the underlying Torque torrent client. Which is to say you can't blindly do the following:
-            <h5>DON'T</h5>
-            <pre class="prettyprint linenums">
+          <p>Every bit of state, or function, is available <strong>only</strong> once it has been bubbled up from the underlying Torque torrent client. Which is to say you can't blindly do the following:</p>
+          <h5>DON'T</h5>
+          <pre class="prettyprint linenums">
 var btapp = new Btapp();
 btapp.connect();
 
@@ -155,7 +155,7 @@ btapp.on('add:torrent', function(torrents) {
           <pre class="prettyprint linenums">
 var url = 'http://vodo.net/media/torrents/Deadside.Pilot.2012.720p.x264-VODO.torrent';
 btapp.get('add').torrent(url);</pre>
-          <p><strong>Callback?</strong> If you'd like to know when the torrent has been added, you can do so by passing in an object with <i>url</i> and <i>callback</i> keys.<p>
+          <p><strong>Callback?</strong> If you'd like to know when the torrent has been added, you can do so by passing in an object with <i>url</i> and <i>callback</i> keys.</p>
           <pre class="prettyprint linenums">
 var magnet = 'magnet:?xt=urn:btih:f0d665f264393a7dafd7d05d739e1097df652e80&dn=The.Yes.Men.Fix.The.World';
 
@@ -179,9 +179,9 @@ btapp.get('add').torrent({
           </section>
           <br>
           <section id="removing-torrent">
-          <h3>Removing torrents</h3>
-          <p>These torrents all suck. Lets get rid of them all.</p>
-          <pre class="prettyprint linenums">
+            <h3>Removing torrents</h3>
+            <p>These torrents all suck. Lets get rid of them all.</p>
+            <pre class="prettyprint linenums">
 btapp.get('torrent').each(function(torrent) {
   torrent.remove();
 });
@@ -189,10 +189,10 @@ btapp.get('torrent').each(function(torrent) {
           </section>
           <br>
           <section id="torrent-properties">
-          <h3>Torrent download percentage</h3>
-          <p>You may be interested in displaying the download percentage of a torrent that you add. This is simple, provided we are using <a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a>. Lets add a torrent file from a url, then be very verbose about how much has downloaded.
-            <h5>SUPER TIMING SAFE!</h5>
-          <pre class="prettyprint linenums">
+            <h3>Torrent download percentage</h3>
+            <p>You may be interested in displaying the download percentage of a torrent that you add. This is simple, provided we are using <a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a>. Lets add a torrent file from a url, then be very verbose about how much has downloaded.
+              <h5>SUPER TIMING SAFE!</h5>
+            <pre class="prettyprint linenums">
 var btapp = new Btapp;
 btapp.connect();
 
@@ -216,9 +216,9 @@ btapp.live('torrent * properties download_url', function(download_url, propertie
       alert('Download progress for ' + name + ': ' + progress);
     });
   }
-});
-</pre>
-This code can be generalized to track any of the torrent properties. Use the <a href="./visualizer.html">Api Visualizer</a> to explore the torrent properties available.
+});</pre>
+          <p>This code can be generalized to track any of the torrent properties. Use the <a href="./visualizer.html">Api Visualizer</a> to explore the torrent properties available.
+          </p>
         </section> <!-- end of torrents -->
 
         <section id="files">
@@ -328,7 +328,7 @@ btapp.get('tracker').scrape({
   complete: 1023,
   downloaded: 1233,
   incomplete: 4,
-  name: 'NCB - WayTooSick' //the availability of the <i>name</i> field varies from tracker to tracker
+  name: 'NCB - WayTooSick' //availability of the <i>name</i> field varies from tracker to tracker
 }</pre>
 
               <p><strong>Alternative:</strong> Often times as a programmer, you might simply want the scrape data for a torrent hosted on the web. If you provide a url, rather than a tracker, hash pair, the underlying Torque client will do the heavy lifting of downloading the torrent file and using the embedded info hash and tracker fields to make the scrape request for you.</p>
@@ -371,7 +371,7 @@ btapp.get('tracker').scrape({
         <p>Btapp.js is developed and maintained <a href="http://twitter.com/bittorrent" target="_blank">@bittorrent</a> by <a href="http://twitter.com/pwmckenna" target="_blank">@pwmckenna</a> and <a href="https://twitter.com/Kzahel" target="_blank">@kzahel</a>.</p>
         <p>Code licensed under the <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
         <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-        <p>Documentation is (somewhat obviously) derived from the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> documentation.
+        <p>Documentation is (somewhat obviously) derived from the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> documentation.</p>
         <ul class="footer-links">
           <li><a href="http://pwmckenna.github.com">Read the blog</a></li>
           <li><a href="https://github.com/bittorrenttorque/btapp/issues?state=open">Submit issues</a></li>
