@@ -307,13 +307,14 @@ btapp.live('torrent ' + hash, function(torrent) {
         <section id="trackers">
           <div class="page-header">
             <h1>Trackers</h1>
-            <p>Trackers are used to augment the dht in finding peers for a specific torrent. However, they generally also support <a href="http://wiki.theory.org/BitTorrentSpecification#Tracker_.27scrape.27_Convention">scrape requests.</a> These can yield information on how many seeders, leachers, the total number of completed downloads, and optionally the name of the torrent.
+          </div>
+          <p>Trackers are used to augment the dht in finding peers for a specific torrent. However, they generally also support <a href="http://wiki.theory.org/BitTorrentSpecification#Tracker_.27scrape.27_Convention">scrape requests.</a> These can yield information on how many seeders, leachers, the total number of completed downloads, and optionally the name of the torrent.
+          </p>
+          <section id="tracker-scrape">
+            <h3>Scrape Requests</h3>
+            <p>Scrape requests can be quite useful for finding out information about a torrent without adding it to the torrent client. To make a scrape request, try the following:
             </p>
-            <section id="tracker-scrape">
-              <h3>Scrape Requests</h3>
-              <p>Scrape requests can be quite useful for finding out information about a torrent without adding it to the torrent client. To make a scrape request, try the following:
-              </p>
-              <pre class="prettyprint linenums">
+            <pre class="prettyprint linenums">
 btapp.get('tracker').scrape({
   //replace with any info hash
   hash: '0D8A72B221176784856673D6C9E2FD193FCD5978' 
@@ -323,8 +324,8 @@ btapp.get('tracker').scrape({
     console.log(info);
   }
 });</pre>
-              <p>Console output:</p>
-              <pre class="prettyprint linenums">
+            <p>Console output:</p>
+            <pre class="prettyprint linenums">
 {
   complete: 1023,
   downloaded: 1233,
@@ -332,18 +333,22 @@ btapp.get('tracker').scrape({
   name: 'NCB - WayTooSick' //availability of the <i>name</i> field varies from tracker to tracker
 }</pre>
 
-              <p><strong>Alternative:</strong> Often times as a programmer, you might simply want the scrape data for a torrent hosted on the web. If you provide a url, rather than a tracker, hash pair, the underlying Torque client will do the heavy lifting of downloading the torrent file and using the embedded info hash and tracker fields to make the scrape request for you.</p>
-              <pre class="prettyprint linenums">
+            <p><strong>Alternative:</strong> Often times as a programmer, you might simply want the scrape data for a torrent hosted on the web. If you provide a url, rather than a tracker, hash pair, the underlying Torque client will do the heavy lifting of downloading the torrent file and using the embedded info hash and tracker fields to make the scrape request for you.</p>
+            <pre class="prettyprint linenums">
 btapp.get('tracker').scrape({
   url: 'http://archive.org/download/jj2008-06-14.mk4/jj2008-06-14.mk4_archive.torrent',
   callback: function(info) {
     console.log(info);
   }
 });</pre>
-            </section>
-          </div>
+          </section>  
         </section>
         <section id="comments">
+          <h1>Questions?</h1>
+          <p>We're happy to help!
+            Shoot us an email at <a href="mailto:torque@bittorrent.com">torque@bittorrent.com</a>, or leave us your inquiries below.
+          </p>
+
           <div id="disqus_thread"></div>
           <script type="text/javascript">
               /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
