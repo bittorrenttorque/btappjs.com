@@ -63,14 +63,14 @@
       </div>
     </div>
 
-<!-- Subhead
-================================================== -->
-<header class="jumbotron subhead" id="overview">
-  <div class="container">
-    <h1>Code Snippets</h1>
-    <p class="lead">The reference for what the underlying torrent client can do for you.</p>
-  </div>
-</header>
+    <!-- Subhead
+    ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>Code Snippets</h1>
+        <p class="lead">The reference for what the underlying torrent client can do for you.</p>
+      </div>
+    </header>
 
   <div class="container">
 
@@ -93,6 +93,7 @@
 
           <li><a href="#trackers"><i class="icon-chevron-right"></i> Tracker</a></li>
           <li><a href="#tracker-scrape"><i class="icon-chevron-right"></i>  -&nbsp;&nbsp;Tracker Scrape</a></li>
+          <li><a href="#comments"><i class="icon-chevron-right"></i>Comments</a></li>
         </ul>
       </div>
       <div class="span9">
@@ -134,8 +135,7 @@ btapp.on('add:torrent', function(torrents) {
   torrents.each(function(torrent) {
     torrent.remove();
   });
-});
-</pre>
+});</pre>
           <p>
             Depending on you app, you may not care about ensuring the functionality is available, but it is important to avoid referencing attributes/functions of undefined values.
             <br><br>
@@ -341,7 +341,8 @@ btapp.get('tracker').scrape({
 });</pre>
             </section>
           </div>
-
+        </section>
+        <section id="comments">
           <div id="disqus_thread"></div>
           <script type="text/javascript">
               /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -356,10 +357,10 @@ btapp.get('tracker').scrape({
           </script>
           <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
           <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          
-        </div>
+        </section>
       </div>
     </div>
+  </div>
 
 
     <!-- Footer
