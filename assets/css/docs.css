@@ -93,7 +93,7 @@ hr.soften {
   color: #333;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: url(../img/bg-homepage.png); /* Old browsers */
+  background: url(../img/bg-homepage.jpg); /* Old browsers */
 }
 .jumbotron h1 {
   font-size: 80px;
