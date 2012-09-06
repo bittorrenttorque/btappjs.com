@@ -109,7 +109,11 @@
             <h1>Template Project</h1>
           </div>
           <p class="lead"><strong>Recommended!</strong> We created <a href="https://github.com/bittorrenttorque/template">a template project</a> that uses the btapp.js files and links to all the dependencies, so you don't have to deal with the rest of this page.</p>
-<pre class="prettyprint linenums">git clone git://github.com/bittorrenttorque/template.git</pre>
+<pre class="prettyprint linenums">
+git clone git://github.com/bittorrenttorque/template.git
+cd template
+git submodule init
+git submodule update</pre>
           </p>
           Then navigate to index.html and you'll see the events displayed on the screen (you will be asked to install the plugin if this is your first time working with Torque)
         </section>
