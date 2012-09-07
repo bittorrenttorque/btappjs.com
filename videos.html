@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Api Visualizer</title>
+    <title>Getting Started</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,13 +63,13 @@
               <li class="">
                 <a href="./snippets.html">Code Snippets</a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="./visualizer.html">Real-time Api Visualizer</a>
               </li>
               <li class="">
                 <a href="./torrent-clients.html">Torrent Clients</a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="./videos.html">Live Coding Videos</a>
               </li>
             </ul>
@@ -82,39 +82,42 @@
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-    <h1>Api Visualizer</h1>
-    <h3>See what your code can see.</h3>
-    <p class="lead">Connects to your underlying Torque torrent client to expose the api, <br>with all the data and remote function calls available in real time.</p>
+    <h1>Live Coding</h1>
+    <p class="lead">Videos of example Torque apps being built with btapp.js.</p>
   </div>
 </header>
 
 
-    <!-- visualizer code -->
-  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>  
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>  
-  <script src="http://underscorejs.org/underscore-min.js"></script>  
-  <script src="http://backbonejs.org/backbone-min.js"></script>
+  <div class="container">
 
-  <!-- jStorage is a hard dependency -->
-  <script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>  
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#dht-project"><i class="icon-chevron-right"></i> DHT Listener</a></li>
+        </ul>
+      </div>
+      <div class="span9">
 
-  <script src="https://raw.github.com/bittorrenttorque/btapp/master/btapp.js"></script>  
-  <script src="https://raw.github.com/bittorrenttorque/btapp/master/client.btapp.js"></script>  
-  <script src="https://raw.github.com/bittorrenttorque/btapp/master/plugin.btapp.js"></script>  
-  <script src="https://raw.github.com/bittorrenttorque/btapp/master/pairing.btapp.js"></script>  
 
-  <!-- Backbrace was developed specifically to help with Backbone structures arranged like ours -->
-  <script src="https://raw.github.com/bittorrenttorque/backbrace/master/backbrace.js"></script>
-  <script src="assets/js/visualizer.js"></script>
 
-  <div class="container row-fluid">
-    <div id="sidebar" class="span2 offset1">
-      <h4>Realtime data...</h4>
-      <div id="data"></div>
+        <!-- Template
+        ================================================== -->
+        <section id="dht-project">
+          <div class="page-header">
+            <h1>DHT Listener</h1>
+            <p>Shows how to listen to the dht for torrent info hashes and collect the meta data for each.</p>
+          </div>
+          <iframe src="http://player.vimeo.com/video/49047352" width="500" height="313" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> <p><a href="http://vimeo.com/49047352">Live Coding: DHT App using btapp.js</a> from <a href="http://vimeo.com/pwmckenna">Patrick Williams</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+        </section
+      </div>
     </div>
-    <div id="content" class="span8 offset1"></div>
 
   </div>
+
+
+
     <!-- Footer
     ================================================== -->
     <footer class="footer">
@@ -131,7 +134,6 @@
         </ul>
       </div>
     </footer>
-
 
 
     <!-- Le javascript
