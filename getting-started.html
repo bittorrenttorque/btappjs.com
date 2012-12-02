@@ -95,7 +95,7 @@
     <div class="row">
       <div class="span3 bs-docs-sidebar">
         <ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="#template-project"><i class="icon-chevron-right"></i> Template Project</a></li>
+          <li><a href="#using-yeoman"><i class="icon-chevron-right"></i> Using Yeoman</a></li>
           <li><a href="#dependencies"><i class="icon-chevron-right"></i> Dependencies</a></li>
           <li><a href="#source"><i class="icon-chevron-right"></i> Source</a></li>
           <li><a href="#javascript-interface"><i class="icon-chevron-right"></i> Javascript interface</a></li>
@@ -107,18 +107,18 @@
 
         <!-- Template
         ================================================== -->
-        <section id="template-project">
+        <section id="using-yeoman">
           <div class="page-header">
-            <h1>Template Project</h1>
+            <h1>Using Yeoman</h1>
           </div>
-          <p class="lead"><strong>Recommended!</strong> We created <a href="https://github.com/bittorrenttorque/template">a template project</a> that uses the btapp.js files and links to all the dependencies, so you don't have to deal with the rest of this page.</p>
+          <p><strong>Recommended!</strong><br>Btapp.js is available via <a href="http://twitter.github.com/bower/">Twitter's Bower</a>, which means it can be installed easily using <a href="http://yeoman.io/">Google's Yeoman</a>, which is an awesome web scaffolding/testing/building tool build on top of <a href="http://gruntjs.com/">Grunt.js</a></p>
 <pre class="prettyprint linenums">
-git clone git://github.com/bittorrenttorque/template.git
-cd template
-git submodule init
-git submodule update</pre>
+yeoman init //or `yeoman init backbone`
+yeoman install btapp
+yeoman install backbrace
+</pre>
+While there are Btapp.js Yeoman generators in the works, for the time being you'll have to manually add links in your html to backbone.js and underscore.js (if you did the plain init), then also jstorage.js, btapp.min.js, and backbrace.js. 
           </p>
-          Then navigate to index.html and you'll see the events displayed on the screen (you will be asked to install the plugin if this is your first time working with Torque)
         </section>
 
         <!-- Dependencies
@@ -127,7 +127,7 @@ git submodule update</pre>
           <div class="page-header">
             <h1>Dependencies</h1>
           </div>
-          <p class="lead">Btapp.js has hard dependencies on <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>, <a href="https://github.com/documentcloud/backbone" target="_blank">Backbone</a>, <a href="https://github.com/douglascrockford/JSON-js" target="_blank">Json2</a> and <a href="https://github.com/andris9/jStorage" target="_blank">jStorage</a></p>
+          <p>Btapp.js has hard dependencies on <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>, <a href="https://github.com/documentcloud/backbone" target="_blank">Backbone</a>, <a href="https://github.com/douglascrockford/JSON-js" target="_blank">Json2</a> and <a href="https://github.com/andris9/jStorage" target="_blank">jStorage</a></p>
 
           <pre class="prettyprint linenums">
 &lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;  
@@ -135,7 +135,7 @@ git submodule update</pre>
 &lt;script src=&quot;http://underscorejs.org/underscore-min.js&quot;&gt;&lt;/script&gt;  
 &lt;script src=&quot;http://backbonejs.org/backbone-min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://raw.github.com/andris9/jStorage/master/jstorage.js&quot;&gt;&lt;/script&gt;</pre>
-          <p class="lead"><a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a> is also heavily recommended, to alleviate some of the trouble you might have using deep trees of Backbone models and collections.</p>
+          <p><a href="https://github.com/bittorrenttorque/backbrace">Backbrace</a> is also heavily recommended, to alleviate some of the trouble you might have using deep trees of Backbone models and collections.</p>
           <pre class="prettyprint linenums">
 &lt;script src=&quot;https://raw.github.com/bittorrenttorque/backbrace/master/backbrace.js&quot;&gt;&lt;/script&gt;</pre>
         </section>
@@ -149,10 +149,15 @@ git submodule update</pre>
           <div class="row-fluid">
             <div class="span12">
               <pre class="prettyprint linenums">
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/btapp.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/client.btapp.js&quot;&gt;&lt;/script&gt;  
+&lt;script src=&quot;http://torque.bittorrent.com/btapp/btapp.min.js&quot;&gt;&lt;/script&gt;</pre>
+              <strong>...or...</strong>
+              <br>
+              <br>
+              <pre class="prettyprint linenums">
+&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/pairing.btapp.js&quot;&gt;&lt;/script&gt;  
 &lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/plugin.btapp.js&quot;&gt;&lt;/script&gt;  
-&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/pairing.btapp.js&quot;&gt;&lt;/script&gt;</pre>
+&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/client.btapp.js&quot;&gt;&lt;/script&gt;  
+&lt;script src=&quot;https://raw.github.com/bittorrenttorque/btapp/master/btapp.js&quot;&gt;&lt;/script&gt;</pre>
               <strong>...or...</strong>
               <br>
               <br>
